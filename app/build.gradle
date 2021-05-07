@@ -31,9 +31,9 @@ android {
         jvmTarget = '1.8'
     }
 }
-apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 
+apply plugin: 'com.android.application'
 dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"

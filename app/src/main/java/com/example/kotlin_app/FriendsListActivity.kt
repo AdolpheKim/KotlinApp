@@ -24,11 +24,12 @@ class FriendsListActivity : AppCompatActivity(), View.OnClickListener {
         val currentUser : FirebaseUser? = auth.currentUser
 
         if(currentUser == null){
-            //startMainActivity()
+            startMainActivity()
         }
     }
 
     override fun onClick(v: View?) {
+        auth.signOut()
         startMainActivity()
     }
 

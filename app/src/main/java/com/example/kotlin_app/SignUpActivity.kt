@@ -30,9 +30,10 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
+
         auth = Firebase.auth
 
-        btnSignUp = findViewById(R.id.buttonSignUp)
+        btnSignUp = findViewById(R.id.buttonSignIn)
         textName = findViewById(R.id.editTextPersonName)
         textEmail = findViewById(R.id.editTextEmail)
         textPassword = findViewById(R.id.editTextPassword)

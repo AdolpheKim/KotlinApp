@@ -7,6 +7,18 @@
     android:background="#F0FBA422"
     tools:context=".SignInActivity">
 
+    <TextView
+        android:id="@+id/textSignUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="회원가입"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSignIn"
+        app:layout_constraintVertical_bias="0.076" />
+
     <EditText
         android:id="@+id/editTextEmail"
         android:layout_width="wrap_content"
@@ -35,7 +47,7 @@
         app:layout_constraintVertical_bias="0.048" />
 
     <Button
-        android:id="@+id/buttonSignUp"
+        android:id="@+id/buttonSignIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="로그인"

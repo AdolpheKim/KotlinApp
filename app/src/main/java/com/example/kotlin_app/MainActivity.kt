@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity (), View.OnClickListener {
 
     override fun onClick(v: View?) {
         if(v?.id == R.id.buttonLogIn) {
-            val newIntent = Intent(this, FriendsListActivity::class.java)
+            val newIntent = Intent(this, SignInActivity::class.java)
             newIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             newIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(newIntent)
