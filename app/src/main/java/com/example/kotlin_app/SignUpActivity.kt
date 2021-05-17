@@ -7,10 +7,13 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.util.regex.Pattern
 
@@ -26,6 +29,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener{
     private lateinit var dialog : AlertDialog
 
     private val emailPattern : Pattern = android.util.Patterns.EMAIL_ADDRESS
+    private val store : FirebaseFirestore = Firebase.firestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +52,9 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener{
         val password : String? = textPassword.text?.toString()
         val confirmPassword: String? = textConfirmPassword.text?.toString()
 
+        var addUserData : Boolean = false
+        var addUserList : Boolean = false
+
         builder = AlertDialog.Builder(this)
         dialog = builder.create()
 
@@ -55,14 +62,42 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener{
             return
         }
 
+        val userData = hashMapOf(
+            email to hashMapOf(
+                "image" to "R.drawable.profile",
+                "name" to name,
+                "friends" to "",
+                "roomName" to ""
+            )
+        )
+
+        val user = hashMapOf(
+            email to name
+        )
+
+        store.collection("database")
+            .document("UserData")
+            .set(userData)
+            .addOnSuccessListener {
+                addUserData = true
+            }
+
+        store.collection("database")
+            .document("UserList")
+            .set(user)
+            .addOnSuccessListener {
+                addUserList = true
+            }
+
         auth.createUserWithEmailAndPassword(email!!, password!!)
             .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
+                if (task.isSuccessful && addUserData && addUserList) {
                     val newIntent = Intent(this, FriendsListActivity::class.java)
                     newIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     newIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(newIntent)
-                } else {
+                }
+                else {
                     // If sign in fails, display a message to the user.
                     Log.w("실패", "createUserWithEmail:failure", task.exception)
                     Toast.makeText(baseContext, "Authentication failed.",
@@ -70,13 +105,6 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener{
                 }
             }
 
-    }
-
-    private fun confirmPassword(password: String?, confirmPassword: String?): Boolean {
-        if(password.equals(confirmPassword)){
-            return false
-        }
-        return true
     }
 
     private fun confirmAllRules(name : String?, email : String?, password : String?, confirmPassword: String?) : Boolean{
@@ -97,10 +125,11 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener{
             builder.setTitle("Error").setMessage("비밀번호는 8자리 이상이어야 합니다.").show()
             return false
         }
-        if(confirmPassword(password, confirmPassword)){
+        if(!password.equals(confirmPassword)){
             builder.setTitle("Error").setMessage("비밀번호와 확인란이 다릅니다.").show()
             return false
         }
+
         return true
     }
 
