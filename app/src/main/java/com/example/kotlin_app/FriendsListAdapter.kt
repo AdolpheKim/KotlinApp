@@ -1,10 +1,11 @@
 package com.example.kotlin_app
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class FriendsListAdapter(private val dataset: Array<String>) :
+class FriendsListAdapter(private val dataset: ArrayList<ArrayList<Any?>>) :
             RecyclerView.Adapter<FriendsListViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FriendsListViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -14,7 +15,7 @@ class FriendsListAdapter(private val dataset: Array<String>) :
     }
 
     override fun onBindViewHolder(holder: FriendsListViewHolder, position: Int) {
-        holder.textView.text = dataset[position]
+        holder.textView.text = dataset[position][0].toString()
         holder.circleImageView.setImageResource(R.drawable.profile)
     }
 

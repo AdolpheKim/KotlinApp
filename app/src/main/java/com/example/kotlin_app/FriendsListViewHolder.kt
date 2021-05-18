@@ -7,7 +7,12 @@ import de.hdodenhof.circleimageview.CircleImageView
 
 class FriendsListViewHolder(v : View) : RecyclerView.ViewHolder(v){
 
-    val textView: TextView = v.findViewById(R.id.textView)
-    val circleImageView : CircleImageView = v.findViewById(R.id.circleImageView)
+    val textView: TextView
+    val circleImageView : CircleImageView
+
+    init {
+        textView = v.findViewById(R.id.textViewName)
+        circleImageView = v.findViewById(R.id.ImageViewProfile)
+    }
 
 }

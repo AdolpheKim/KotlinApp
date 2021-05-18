@@ -51,6 +51,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener{
         val email : String? = textEmail.text?.toString()
         val password : String? = textPassword.text?.toString()
         val confirmPassword: String? = textConfirmPassword.text?.toString()
+        val defaultImg : String = "R.drawable.profile"
 
         var addUserData : Boolean = false
         var addUserList : Boolean = false
@@ -63,28 +64,22 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener{
         }
 
         val userData = hashMapOf(
-            email to hashMapOf(
-                "image" to "R.drawable.profile",
+                "image" to defaultImg,
                 "name" to name,
                 "friends" to "",
                 "roomName" to ""
-            )
         )
 
-        val user = hashMapOf(
-            email to name
-        )
-
-        store.collection("database")
-            .document("UserData")
+        store.collection("UserData")
+            .document(email!!)
             .set(userData)
             .addOnSuccessListener {
                 addUserData = true
             }
 
-        store.collection("database")
-            .document("UserList")
-            .set(user)
+        store.collection("UserList")
+            .document(name!!)
+            .set(hashMapOf(name to defaultImg))
             .addOnSuccessListener {
                 addUserList = true
             }
