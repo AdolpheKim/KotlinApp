@@ -50,7 +50,6 @@ class FriendsListActivity : AppCompatActivity() {
                     Data.add(i["name"])
                     Data.add(i["image"])
                     userData.add(Data)
-                    Log.d("",i.toString())
                 }
                 recyclerViewFriendsList = findViewById(R.id.recyclerView3)
                 recyclerViewFriendsList.adapter = FriendsListAdapter(userData)
