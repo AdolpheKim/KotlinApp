@@ -1,8 +1,9 @@
-package com.example.kotlin_app
+package com.example.kotlin_app.friend_list
 
 import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.kotlin_app.R
 import de.hdodenhof.circleimageview.CircleImageView
 
 class FriendsListViewHolder(v : View) : RecyclerView.ViewHolder(v){

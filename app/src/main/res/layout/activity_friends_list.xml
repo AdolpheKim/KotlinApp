@@ -16,6 +16,7 @@
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#F0FBA422"
             app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:toolbarId="@+id/toolbar">
@@ -41,7 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#ffffff"
-            tools:context=".FriendsListActivity">
+            tools:context=".friend_list.FriendsListActivity">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView3"

@@ -7,9 +7,9 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.example.kotlin_app.friend_list.FriendsListActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -52,6 +52,8 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener{
         val password : String? = textPassword.text?.toString()
         val confirmPassword: String? = textConfirmPassword.text?.toString()
         val defaultImg : String = "R.drawable.profile"
+        val friends : MutableList<String>? = mutableListOf()
+        val roomName : MutableList<String>? = mutableListOf()
 
         var addUserData : Boolean = false
         var addUserList : Boolean = false
@@ -66,8 +68,8 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener{
         val userData = hashMapOf(
                 "image" to defaultImg,
                 "name" to name,
-                "friends" to "",
-                "roomName" to ""
+                "friends" to friends!!,
+                "roomName" to roomName!!
         )
 
         store.collection("UserData")
@@ -78,7 +80,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener{
             }
 
         store.collection("UserList")
-            .document(name!!)
+            .document(email)
             .set(hashMapOf(name to defaultImg))
             .addOnSuccessListener {
                 addUserList = true

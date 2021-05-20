@@ -1,9 +1,9 @@
-package com.example.kotlin_app
+package com.example.kotlin_app.friend_list
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.kotlin_app.R
 
 class FriendsListAdapter(private val dataset: ArrayList<ArrayList<Any?>>) :
             RecyclerView.Adapter<FriendsListViewHolder>(){
