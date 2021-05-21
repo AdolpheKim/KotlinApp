@@ -8,7 +8,6 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.kotlin_app.friend_list.FriendsListActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -50,7 +49,7 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
                 auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
-                        val newIntent = Intent(this, FriendsListActivity::class.java)
+                        val newIntent = Intent(this, MainActivity::class.java)
                         newIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         newIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(newIntent)

@@ -32,7 +32,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".friend_list.FriendsListActivity">
+        <activity android:name=".friend_list.FriendsListFragment">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -9,7 +9,6 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.example.kotlin_app.friend_list.FriendsListActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -56,7 +55,6 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener{
         val roomName : MutableList<String>? = mutableListOf()
 
         var addUserData : Boolean = false
-        var addUserList : Boolean = false
 
         builder = AlertDialog.Builder(this)
         dialog = builder.create()
@@ -66,6 +64,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener{
         }
 
         val userData = hashMapOf(
+                "email" to email,
                 "image" to defaultImg,
                 "name" to name,
                 "friends" to friends!!,
@@ -79,17 +78,10 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener{
                 addUserData = true
             }
 
-        store.collection("UserList")
-            .document(email)
-            .set(hashMapOf(name to defaultImg))
-            .addOnSuccessListener {
-                addUserList = true
-            }
-
         auth.createUserWithEmailAndPassword(email!!, password!!)
             .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful && addUserData && addUserList) {
-                    val newIntent = Intent(this, FriendsListActivity::class.java)
+                if (task.isSuccessful && addUserData) {
+                    val newIntent = Intent(this, MainActivity::class.java)
                     newIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     newIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(newIntent)
