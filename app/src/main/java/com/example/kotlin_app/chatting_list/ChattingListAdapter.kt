@@ -1,13 +1,12 @@
 package com.example.kotlin_app.friend_list
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin_app.R
 
-class FriendsListAdapter(private val dataset: ArrayList<ArrayList<Any?>>) :
-            RecyclerView.Adapter<FriendsListViewHolder>(){
+class ChattingListAdapter(private val dataset: ArrayList<ArrayList<Any?>>) :
+    RecyclerView.Adapter<FriendsListViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FriendsListViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_friends_list, parent, false)
