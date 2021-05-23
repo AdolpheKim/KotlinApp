@@ -7,31 +7,31 @@
     tools:context=".add_friend.AddFriendActivity">
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/editTextFind"
         android:layout_width="316dp"
         android:layout_height="40dp"
         android:layout_marginStart="4dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView4"
+        app:layout_constraintStart_toEndOf="@+id/imageViewBack"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.023" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/imageViewFind"
         android:layout_width="45dp"
         android:layout_height="43dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.45"
-        app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName2"
+        app:layout_constraintStart_toEndOf="@+id/editTextFind"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.017"
         app:srcCompat="@drawable/find" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/imageViewBack"
         android:layout_width="37dp"
         android:layout_height="38dp"
         android:layout_marginStart="4dp"
@@ -49,7 +49,7 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2"
+        app:layout_constraintTop_toBottomOf="@+id/editTextFind"
         tools:listitem="@layout/item_add_friend" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.example.kotlin_app.friend_list
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
