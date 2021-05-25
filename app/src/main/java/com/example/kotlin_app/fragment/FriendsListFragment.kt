@@ -18,7 +18,8 @@ class FriendsListFragment : Fragment() {
 
     private lateinit var recyclerViewFriendsList : RecyclerView
     private lateinit var textView: TextView
-    private var friends: MutableList<String>? = mutableListOf()
+    private var friendsName: MutableList<String>? = mutableListOf()
+    private var friendsEmail: MutableList<String>? = mutableListOf()
 
     private val store = Firebase.firestore
     private val auth = Firebase.auth
@@ -49,17 +50,17 @@ class FriendsListFragment : Fragment() {
         recyclerViewFriendsList = v.findViewById(R.id.recyclerView3)
         textView = v.findViewById(R.id.textViewName)
 
-        friends?.add("")
         store.collection("UserData")
             .document(currentUser!!)
             .collection("friends")
             .get()
             .addOnSuccessListener { result ->
-                friends?.clear()
+                friendsName?.clear()
+                friendsEmail?.clear()
                 for (i in result) {
-                    friends?.add(i["name"].toString())
+                    friendsName?.add(i["name"].toString())
+                    friendsEmail?.add(i["email"].toString())
                 }
-                Log.d("","$result")
                 store.collection("UserData")
                     .get()
                     .addOnSuccessListener { result ->
@@ -68,11 +69,11 @@ class FriendsListFragment : Fragment() {
                             Data.add(i["name"])
                             Data.add(i["image"])
                             if(currentUser.equals(i["email"])) textView.text = i["name"].toString()
-                            else if( i["name"] in friends!! ) userData.add(Data)
+                            else if( i["name"] in friendsName!! && i["email"] in friendsEmail!!) userData.add(Data)
+                            Log.d("???","$result")
                         }
                         recyclerViewFriendsList.adapter = FriendsListAdapter(userData)
                     }
             }
-
     }
 }

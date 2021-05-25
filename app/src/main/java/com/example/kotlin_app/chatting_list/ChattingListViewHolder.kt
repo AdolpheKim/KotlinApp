@@ -13,7 +13,7 @@ class ChattingListViewHolder(v : View) : RecyclerView.ViewHolder(v){
 
     init {
         textView = v.findViewById(R.id.textViewName)
-        circleImageView = v.findViewById(R.id.ImageViewProfile)
+        circleImageView = v.findViewById(R.id.imageViewProfile)
     }
 
 }

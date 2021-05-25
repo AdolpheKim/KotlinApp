@@ -1,13 +1,12 @@
 package com.example.kotlin_app.add_friend
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Adapter
 import android.widget.EditText
 import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin_app.MainActivity
 import com.example.kotlin_app.R
@@ -53,15 +52,17 @@ class AddFriendActivity : AppCompatActivity(), View.OnClickListener {
                 .document(editText.text.toString())
                 .get()
                 .addOnSuccessListener { result ->
-                    if(!userData.isNullOrEmpty()) userData = arrayListOf()
+                    if (!userData.isNullOrEmpty()) userData = arrayListOf()
                     val Data = arrayListOf<Any?>()
                     Data.add(result["name"])
                     Data.add(result["image"])
-                    if(currentUser != result["email"]) userData.add(Data)
+                    Data.add(result["email"])
+                    if (currentUser != result["email"]) userData.add(Data)
                     Log.d("에바", result.toString())
 
                     recyclerViewFriendsList.adapter = AddFriendAdapter(userData)
                 }
+
         }
         else if(v?.id == R.id.imageViewBack){
             val newIntent = Intent(this, MainActivity::class.java)

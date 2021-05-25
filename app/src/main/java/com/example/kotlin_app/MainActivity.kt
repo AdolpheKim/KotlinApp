@@ -43,14 +43,13 @@ class MainActivity : AppCompatActivity (), View.OnClickListener,
 
         if(currentUser == null){
             val newIntent = Intent(this, SignInActivity::class.java)
-            newIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            newIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            newIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            newIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(newIntent)
         }
-
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.add_friend_menu, menu)
+        menuInflater.inflate(R.menu.menu_add_friend, menu)
         return true
     }
 

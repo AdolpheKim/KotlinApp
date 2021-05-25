@@ -66,9 +66,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener{
         val userData = hashMapOf(
                 "email" to email,
                 "image" to defaultImg,
-                "name" to name,
-                "friends" to friends!!,
-                "roomName" to roomName!!
+                "name" to name
         )
 
         store.collection("UserData")

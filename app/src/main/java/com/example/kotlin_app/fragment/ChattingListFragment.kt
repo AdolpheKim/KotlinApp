@@ -8,8 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin_app.R
-import com.example.kotlin_app.chatting.ChattingAdapter
-import com.example.kotlin_app.friend_list.FriendsListAdapter
+import com.example.kotlin_app.friend_list.ChattingListAdapter
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -31,7 +30,7 @@ class ChattingListFragment : Fragment() {
         return v
     }
 
-    public fun newInstant() : ChattingListFragment {
+    fun newInstant() : ChattingListFragment {
         val args = Bundle()
         val fragment = ChattingListFragment()
         fragment.arguments = args
@@ -64,7 +63,7 @@ class ChattingListFragment : Fragment() {
                             Data.add(i["image"])
                             if( currentUser != i["name"] && i["name"] in friends!! )userData.add(Data)
                         }
-                        recyclerViewFriendsList.adapter = ChattingAdapter(userData)
+                        recyclerViewFriendsList.adapter = ChattingListAdapter(userData)
                     }
                 Log.d("","$result")
             }
